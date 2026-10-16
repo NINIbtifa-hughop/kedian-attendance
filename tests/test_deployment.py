@@ -24,6 +24,10 @@ class VercelDeploymentTests(unittest.TestCase):
             self.config["rewrites"],
         )
 
+    def test_vercel_local_metadata_is_ignored(self) -> None:
+        gitignore = (ROOT / ".gitignore").read_text(encoding="utf-8").splitlines()
+        self.assertIn(".vercel/", gitignore)
+
 
 if __name__ == "__main__":
     unittest.main()
